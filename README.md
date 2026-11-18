@@ -3,6 +3,7 @@
 A full-stack institutional platform where **students** track skills, certificates, projects, achievements, learning goals, and placement-preparation results, and publish an optional public portfolio, and **college administrators** manage accounts, verify certificates, and view aggregate institutional analytics.
 
 [![Documentation](https://img.shields.io/badge/Documentation-Complete%20Guide%20with%20Screenshots-blue)](docs/DOCUMENTATION.md)
+[![Deployment](https://img.shields.io/badge/Deploy-Render%20%7C%20Vercel-success)](docs/DEPLOYMENT.md)
 [![FastAPI](https://img.shields.io/badge/Backend-FastAPI%20%7C%20Python%203.12-009688)](backend/)
 [![React](https://img.shields.io/badge/Frontend-React%2018%20%7C%20Vite%20%7C%20TypeScript-61DAFB)](frontend/)
 

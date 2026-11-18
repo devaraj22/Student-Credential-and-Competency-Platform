@@ -45,6 +45,14 @@ def create_app() -> FastAPI:
         logger.exception("Unhandled error on %s %s", request.method, request.url.path)  # server log only
         return JSONResponse(status_code=500, content={"detail": "Something went wrong. Please try again."})
 
+    @app.get("/", tags=["health"])
+    def root():
+        return {"status": "ok", "message": "Student Credential & Competency Platform API is running"}
+
+    @app.get("/health", tags=["health"])
+    def health():
+        return {"status": "ok"}
+
     app.include_router(api_router, prefix="/api/v1")
     return app
 

@@ -1,0 +1,34 @@
+services:
+  - type: web
+    name: skilltrack-api
+    runtime: python
+    rootDir: backend
+    plan: free
+    buildCommand: pip install -r requirements.txt && alembic upgrade head
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: APP_ENV
+        value: production
+      - key: PYTHON_VERSION
+        value: 3.12.0
+      - key: DATABASE_URL
+        fromDatabase:
+          name: skilltrack-db
+          property: connectionString
+      - key: SECRET_KEY
+        generateValue: true
+      - key: ACCESS_TOKEN_MINUTES
+        value: "60"
+      - key: COOKIE_SAMESITE
+        value: lax
+      - key: CORS_ORIGINS
+        sync: false
+        value: "http://localhost:5173,https://student-skill-tracker.vercel.app"
+
+databases:
+  - name: skilltrack-db
+    databaseName: skilltrack
+    user: skilltrack
+    plan: free

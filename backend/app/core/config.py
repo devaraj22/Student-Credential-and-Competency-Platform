@@ -22,8 +22,12 @@ class Settings(BaseSettings):
 
     @field_validator("database_url")
     @classmethod
-    def _resolve_sqlite_path(cls, v: str) -> str:
-        if v.startswith("sqlite:///") and not v.startswith("sqlite:///:memory:"):
+    def _normalize_database_url(cls, v: str) -> str:
+        if v.startswith("postgres://"):
+            v = "postgresql+psycopg://" + v[len("postgres://"):]
+        elif v.startswith("postgresql://") and not v.startswith("postgresql+"):
+            v = "postgresql+psycopg://" + v[len("postgresql://"):]
+        elif v.startswith("sqlite:///") and not v.startswith("sqlite:///:memory:"):
             path_part = v[len("sqlite:///"):]
             path_obj = Path(path_part)
             if not path_obj.is_absolute():
