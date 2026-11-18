@@ -29,9 +29,9 @@ jobs:
       - name: Run backend tests
         working-directory: backend
         env:
-          APP_ENV: test
-          SECRET_KEY: ci-test-secret-key-at-least-32-characters-long
-          DATABASE_URL: sqlite:///:memory:
+          APP_ENV: "test"
+          SECRET_KEY: "ci-test-secret-key-at-least-32-characters-long"
+          DATABASE_URL: "sqlite:///:memory:"
         run: |
           python -m pytest -q
 
